@@ -4,6 +4,7 @@ import "./globals.css";
 import {ThemeProvider} from "next-themes";
 import {ClerkProvider} from "@clerk/nextjs";
 import {dark} from "@clerk/themes";
+import {Toaster} from "sonner";
 
 const interFont = Inter({
     subsets: ["latin"],
@@ -24,9 +25,9 @@ export default function RootLayout({
 }>) {
     return (
         <ClerkProvider
-        appearance={{
-            baseTheme : dark
-        }}
+            appearance={{
+                baseTheme: dark
+            }}
         >
             <html lang="en" suppressHydrationWarning={true}>
             <body
@@ -40,6 +41,13 @@ export default function RootLayout({
                 enableColorScheme
             >
                 {children}
+                <Toaster position={"top-right"} richColors={true} icons={
+                    {
+                        success: "✅",
+                        error: "❌",
+                        loading: "⏳",
+                    }
+                }/>
             </ThemeProvider>
             </body>
             </html>

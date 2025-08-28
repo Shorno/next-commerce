@@ -1,7 +1,7 @@
-import Image from "next/image";
+import CustomIcon from "@/components/CustomIcon";
 
 export default function CategoryIcon() {
     return (
-        <Image src={"/svg/menu-svgrepo-com.svg"} alt={"menu icon"} width={40} height={40}/>
+        <CustomIcon src={"/icons/categories.png"} alt={"category icon"}/>
     )
 }

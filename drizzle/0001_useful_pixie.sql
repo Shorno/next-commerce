@@ -1,0 +1,1 @@
+ALTER TYPE "public"."role_enum" RENAME TO "user_roles";
