@@ -1,0 +1,1 @@
+ALTER TABLE "subcategories" ADD COLUMN "featured" boolean DEFAULT false;

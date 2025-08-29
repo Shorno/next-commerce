@@ -3,7 +3,7 @@ import {db} from "@/db";
 import {categories} from "@/db/schema";
 import {revalidatePath} from "next/cache";
 import {eq} from "drizzle-orm";
-import {CategoryFormData} from "@/zodSchema";
+import {CategoryFormData} from "@/zodSchema/category";
 
 interface Response {
     statusCode: number,

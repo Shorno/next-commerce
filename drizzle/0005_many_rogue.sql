@@ -1,0 +1,1 @@
+ALTER TABLE "subcategories" ADD COLUMN "image" varchar(255) NOT NULL;
