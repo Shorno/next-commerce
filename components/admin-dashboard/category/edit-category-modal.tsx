@@ -1,7 +1,7 @@
 "use client"
 import { BaseModal } from "./base-modal"
 import type { Category } from "@/db/schema"
-import { EditCategoryForm } from "@/components/admin-dashboard/edit-category-form"
+import { EditCategoryForm } from "@/components/admin-dashboard/category/edit-category-form"
 
 interface EditCategoryModalProps {
     category: Category

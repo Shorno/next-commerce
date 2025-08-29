@@ -3,7 +3,7 @@ import {Button} from "@/components/ui/button"
 import {deleteCategory} from "@/actions/admin/categoris"
 import {useState} from "react"
 import type {Category} from "@/db/schema"
-import {BaseModal} from "@/components/admin-dashboard/base-modal";
+import {BaseModal} from "@/components/admin-dashboard/category/base-modal";
 
 interface ConfirmDeleteProps {
     category: Category

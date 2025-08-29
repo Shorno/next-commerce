@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ConfirmDelete } from "./confirm-delete"
 import { useState } from "react"
 import type { Category } from "@/db/schema"
-import {EditCategoryModal} from "@/components/admin-dashboard/edit-category-modal";
+import {EditCategoryModal} from "@/components/admin-dashboard/category/edit-category-modal";
 
 interface CategoryActionsCellProps {
     category: Category

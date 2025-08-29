@@ -20,7 +20,7 @@ import {ChevronDown} from "lucide-react";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {Category} from "@/db/schema";
 import {categoryColumns} from "@/app/dashboard/admin/categories/_components/columns";
-import CategoryFormModal from "@/components/admin-dashboard/category-form";
+import CategoryFormModal from "@/components/admin-dashboard/category/category-form";
 
 interface TableProps {
     data: Category[];
