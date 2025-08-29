@@ -25,10 +25,10 @@ import {
 import {Input} from "@/components/ui/input"
 import {Checkbox} from "@/components/ui/checkbox"
 import {useState, useTransition} from "react";
-import {createCategory} from "@/actions/admin/create-category";
 import {toast} from "sonner";
-import {LoaderIcon, Star} from "lucide-react";
+import {LoaderIcon, PlusIcon, Star} from "lucide-react";
 import SingleImageUpload from "@/components/single-image-upload";
+import {createCategory} from "@/actions/admin/categoris";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -92,7 +92,7 @@ export default function CategoryFormModal({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                {trigger || <Button>Add New Category</Button>}
+                {trigger || <Button><PlusIcon/> New Category</Button>}
             </DialogTrigger>
             <DialogContent className="sm:max-w-[480px] max-h-[85vh] overflow-y-auto">
                 <DialogHeader className="pb-3">
@@ -104,7 +104,6 @@ export default function CategoryFormModal({
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        {/* Category Details Section */}
                         <div className="space-y-4">
                             <div className="grid grid-cols-1 gap-4">
                                 <FormField

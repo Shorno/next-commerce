@@ -56,7 +56,18 @@ export async function createCategory(data: CategoryFormData): Promise<Response> 
             message: 'An error occurred while creating the category'
         }
     }
-
 }
 
+
+export async function getAllCategories() {
+    try {
+
+        return await db.query.categories.findMany({
+            orderBy: (categories, {asc}) => [asc(categories.name)]
+        })
+    } catch (error) {
+        console.error('Error fetching categories:', error)
+        return []
+    }
+}
 
