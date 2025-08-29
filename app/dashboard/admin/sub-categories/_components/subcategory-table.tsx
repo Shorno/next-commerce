@@ -60,54 +60,71 @@ export function SubcategoryTable({columns, data}: CategoryTableProps) {
 
     return (
         <div className="w-full">
-            <div className="flex items-center py-4">
-                <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center gap-8">
+            <div className="py-4">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    {/* Left group (mobile: stacked; desktop: input + columns) */}
+                    <div className="flex w-full flex-col gap-2">
+                        {/* Search on top (mobile and desktop) */}
                         <Input
                             placeholder="Filter categories..."
-                            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-                            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
-                            className="max-w-sm"
+                            value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+                            onChange={(event) =>
+                                table.getColumn('name')?.setFilterValue(event.target.value)
+                            }
+                            className="w-full md:max-w-sm"
                         />
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="ml-auto w-32 bg-transparent">
-                                    Columns <ChevronDown className="ml-2 h-4 w-4"/>
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                {table
-                                    .getAllColumns()
-                                    .filter((column) => column.getCanHide())
-                                    .map((column) => {
-                                        return (
+
+                        {/* Mobile row: Columns + icon-only Add */}
+                        <div className="flex items-center gap-2 md:hidden">
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline" className="flex-1 bg-transparent">
+                                        Columns <ChevronDown className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="start" sideOffset={4} className="w-56">
+                                    {table
+                                        .getAllColumns()
+                                        .filter((column) => column.getCanHide())
+                                        .map((column) => (
                                             <DropdownMenuCheckboxItem
                                                 key={column.id}
                                                 className="capitalize"
                                                 checked={column.getIsVisible()}
-                                                onCheckedChange={(value) => column.toggleVisibility(value)}
+                                                onCheckedChange={(value) => column.toggleVisibility(!!value)}
                                             >
                                                 {column.id}
                                             </DropdownMenuCheckboxItem>
-                                        )
-                                    })}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                                        ))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+
+                            <Button
+                                aria-label="New subcategory"
+                                className="h-9 w-9 p-0"
+                                onClick={() => setCreateOpen(true)}
+                            >
+                                <PlusIcon className="h-4 w-4" aria-hidden="true" />
+                            </Button>
+                        </div>
                     </div>
 
-                    <SubcategoryModal
-                        mode="create"
-                        open={isCreateOpen}
-                        onOpenChange={setCreateOpen}
-                        trigger={
-                            <Button>
-                                <PlusIcon className="mr-2 h-4 w-4"/>
-                                New Subcategory
-                            </Button>
-                        }
-                    />
+                    <div className="hidden md:block">
+                        <Button onClick={() => setCreateOpen(true)}>
+                            <PlusIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+                            <span>New Subcategory</span>
+                        </Button>
+                    </div>
                 </div>
+
+                <SubcategoryModal
+                    mode="create"
+                    open={isCreateOpen}
+                    onOpenChange={setCreateOpen}
+                />
             </div>
+
+
 
             <div className="overflow-hidden rounded-md border">
                 <Table>

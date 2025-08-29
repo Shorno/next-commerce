@@ -7,7 +7,6 @@ export default async function SubCategoriesPage() {
 
     return (
         <>
-            SubCategories Page
             <SubcategoryTable data={subcategories} columns={subcategoryColumns}/>
         </>
     )

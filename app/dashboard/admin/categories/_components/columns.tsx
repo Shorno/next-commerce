@@ -1,31 +1,11 @@
 "use client"
 
 import type {ColumnDef} from "@tanstack/react-table"
-import {Checkbox} from "@/components/ui/checkbox"
 import type {Category} from "@/db/schema"
 import Image from "next/image"
 import {CategoryActionsCell} from "./category-actions-cell"
 
 export const categoryColumns: ColumnDef<Category>[] = [
-    {
-        id: "select",
-        header: ({table}) => (
-            <Checkbox
-                checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({row}) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-        ),
-        enableSorting: false,
-        enableHiding: false,
-    },
     {
         accessorKey: "image",
         header: "Image",
@@ -33,9 +13,9 @@ export const categoryColumns: ColumnDef<Category>[] = [
             <Image
                 src={row.getValue("image") || "/placeholder.svg"}
                 alt="Category Image"
-                width={80}
-                height={80}
-                className="rounded-md object-center aspect-square"
+                width={100}
+                height={100}
+                className="rounded-md object-cover aspect-video"
 
             />
         ),
