@@ -1,6 +1,6 @@
-import {verifyWebhook} from '@clerk/nextjs/webhooks'
+import {verifyWebhook, WebhookEvent} from '@clerk/nextjs/webhooks'
 import {NextRequest} from 'next/server'
-import {NewUser, users, roleEnum} from "@/db/schema";
+import {NewUser, users, roleEnum, UserRole} from "@/db/schema";
 import {db} from "@/db";
 import {clerkClient} from "@clerk/nextjs/server";
 import {eq} from "drizzle-orm";
@@ -9,14 +9,14 @@ export async function POST(req: NextRequest) {
     try {
         const evt = await verifyWebhook(req)
         const {id} = evt.data
-        const eventType = evt.type
+        const eventType : WebhookEvent["type"] = evt.type
 
         console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
 
         if (evt.type === 'user.created' || evt.type === "user.updated") {
             const clerkRole = evt.data.private_metadata?.role as string;
             const validRoles = roleEnum.enumValues;
-            const role = validRoles.includes(clerkRole as any) ? clerkRole as typeof roleEnum.enumValues[number] : "USER";
+            const role = validRoles.includes(clerkRole as UserRole) ? clerkRole as UserRole : "USER";
 
             const user: NewUser = {
                 id: evt.data.id,

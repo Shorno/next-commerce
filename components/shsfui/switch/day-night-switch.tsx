@@ -15,7 +15,6 @@ import {useEffect, useState} from "react";
 
 
 type DayNightSwitchProps = {
-    defaultChecked?: boolean;
     onToggle?: (checked: boolean) => void;
 } & React.HTMLAttributes<HTMLDivElement> &
     MotionProps;
@@ -66,7 +65,7 @@ const createStarVariants = (index: number): Variants => ({
 });
 
 const DayNightSwitch = React.forwardRef<HTMLDivElement, DayNightSwitchProps>(
-    ({className, defaultChecked = true, onToggle, ...restProps}, ref) => {
+    ({className, onToggle, ...restProps}, ref) => {
         const {setTheme, theme} = useTheme()
         const [mounted, setMounted] = useState(false)
 
