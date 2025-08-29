@@ -2,7 +2,6 @@
 
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
-import {z} from "zod"
 
 import {Button} from "@/components/ui/button"
 import {
@@ -29,27 +28,9 @@ import {toast} from "sonner";
 import {LoaderIcon, PlusIcon, Star} from "lucide-react";
 import SingleImageUpload from "@/components/single-image-upload";
 import {createCategory} from "@/actions/admin/categoris";
+import {CategoryFormData, categorySchema} from "@/zodSchema";
 
-const formSchema = z.object({
-    name: z.string().min(1, {
-        message: "Category name is required.",
-    }).max(255, {
-        message: "Category name must be less than 255 characters.",
-    }),
-    image: z.string().min(1, {
-        message: "Image URL is required.",
-    }),
-    slug: z.string().min(1, {
-        message: "Slug is required.",
-    }).max(100, {
-        message: "Slug must be less than 100 characters.",
-    }).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
-        message: "Slug must contain only lowercase letters, numbers, and hyphens.",
-    }),
-    featured: z.boolean().default(false).nonoptional(),
-})
 
-export type CategoryFormData = z.infer<typeof formSchema>
 
 interface CategoryFormModalProps {
     trigger?: React.ReactNode;
@@ -62,7 +43,7 @@ export default function CategoryFormModal({
     const [isPending, startTransition] = useTransition();
 
     const form = useForm<CategoryFormData>({
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(categorySchema),
         defaultValues: {
             name: "",
             image: "",
