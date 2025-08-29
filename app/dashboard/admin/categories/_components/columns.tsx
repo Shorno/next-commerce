@@ -1,9 +1,10 @@
 "use client"
+
 import type { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
 import type { Category } from "@/db/schema"
 import Image from "next/image"
-import {CategoryActionsCell} from "@/app/dashboard/admin/categories/_components/category-actions-cell";
+import { CategoryActionsCell } from "./category-actions-cell"
 
 export const categoryColumns: ColumnDef<Category>[] = [
     {
@@ -31,7 +32,7 @@ export const categoryColumns: ColumnDef<Category>[] = [
         cell: ({ row }) => (
             <Image
                 src={row.getValue("image") || "/placeholder.svg"}
-                alt={"Category Image"}
+                alt="Category Image"
                 width={80}
                 height={80}
                 className="rounded-md"
@@ -51,14 +52,31 @@ export const categoryColumns: ColumnDef<Category>[] = [
         },
     },
     {
+        accessorKey: "featured",
+        header: "Featured",
+        cell: ({ row }) => {
+            const featured = row.getValue("featured") as boolean
+            return (
+                <div className="flex items-center">
+          <span
+              className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                  featured ? "bg-amber-100 text-amber-800" : "bg-gray-100 text-gray-800"
+              }`}
+          >
+            {featured ? "Featured" : "Regular"}
+          </span>
+                </div>
+            )
+        },
+    },
+    {
         id: "actions",
-        header: () => <div className={"text-center"}>Actions</div>,
+        header: () => <div className="text-center">Actions</div>,
         enableHiding: false,
         cell: ({ row }) => (
-            <div className={"text-center"}>
+            <div className="text-center">
                 <CategoryActionsCell category={row.original} />
             </div>
         ),
     },
 ]
-
