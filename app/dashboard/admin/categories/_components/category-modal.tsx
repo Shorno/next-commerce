@@ -3,7 +3,7 @@
 import type React from "react"
 import { CategoryForm } from "./category-form"
 import type { Category } from "@/db/schema"
-import {BaseModal} from "@/components/admin-dashboard/category/base-modal";
+import {BaseModal} from "@/components/base-modal";
 
 interface CategoryModalProps {
     mode: "create" | "edit"

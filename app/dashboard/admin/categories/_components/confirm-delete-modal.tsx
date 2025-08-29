@@ -5,7 +5,7 @@ import { deleteCategory } from "@/actions/admin/categoris"
 import { useState } from "react"
 import type { Category } from "@/db/schema"
 import { toast } from "sonner"
-import {BaseModal} from "@/components/admin-dashboard/category/base-modal";
+import {BaseModal} from "@/components/base-modal";
 
 interface ConfirmDeleteModalProps {
     category: Category
