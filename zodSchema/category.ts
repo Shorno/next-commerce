@@ -19,4 +19,12 @@ export const categorySchema = z.object({
     featured: z.boolean().default(false).nonoptional(),
 })
 
+export const subcategorySchema = categorySchema.extend({
+    categoryId : z.number({
+        message : "Category ID is required.",
+    })
+})
+
+
 export type CategoryFormData = z.infer<typeof categorySchema>
+export type SubcategoryFormData = z.infer<typeof subcategorySchema>

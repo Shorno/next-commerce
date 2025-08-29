@@ -4,16 +4,16 @@ import {MoreHorizontal, Edit, Trash2} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu"
 import {useState} from "react"
-import type {Category} from "@/db/schema"
-import {CategoryModal} from "@/app/dashboard/admin/categories/_components/category-modal";
-import {ConfirmDeleteModal} from "@/app/dashboard/admin/categories/_components/confirm-delete-modal";
+import type {Subcategory} from "@/db/schema"
+import {SubcategoryModal} from "@/app/dashboard/admin/sub-categories/_components/subcategory-modal";
+import {ConfirmDeleteSubModal} from "@/app/dashboard/admin/sub-categories/_components/confirm-delete-sub-modal";
 
 
-interface CategoryActionsCellProps {
-    category: Category
+interface SubcategoryActionsCellProps {
+    subcategory: Subcategory
 }
 
-export function CategoryActionsCell({category}: CategoryActionsCellProps) {
+export function SubcategoryActionsCell({subcategory}: SubcategoryActionsCellProps) {
     const [isDropdownOpen, setDropdownOpen] = useState(false)
     const [isEditOpen, setEditOpen] = useState(false)
     const [isDeleteOpen, setDeleteOpen] = useState(false)
@@ -48,9 +48,9 @@ export function CategoryActionsCell({category}: CategoryActionsCellProps) {
                 </DropdownMenuContent>
             </DropdownMenu>
 
-            <CategoryModal mode="edit" category={category} open={isEditOpen} onOpenChange={setEditOpen}/>
+            <SubcategoryModal mode="edit" subcategory={subcategory} open={isEditOpen} onOpenChange={setEditOpen}/>
 
-            <ConfirmDeleteModal category={category} open={isDeleteOpen} onOpenChange={setDeleteOpen}/>
+            <ConfirmDeleteSubModal subcategory={subcategory} open={isDeleteOpen} onOpenChange={setDeleteOpen}/>
         </>
     )
 }

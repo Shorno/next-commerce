@@ -2,11 +2,12 @@
 
 import type {ColumnDef} from "@tanstack/react-table"
 import {Checkbox} from "@/components/ui/checkbox"
-import type {Category} from "@/db/schema"
+import type {Category, Subcategory} from "@/db/schema"
 import Image from "next/image"
-import {CategoryActionsCell} from "./category-actions-cell"
+import {SubcategoryActionsCell} from "@/app/dashboard/admin/sub-categories/_components/subcategory-actions-cell";
+import Link from "next/link";
 
-export const categoryColumns: ColumnDef<Category>[] = [
+export const subcategoryColumns: ColumnDef<Subcategory>[] = [
     {
         id: "select",
         header: ({table}) => (
@@ -36,7 +37,6 @@ export const categoryColumns: ColumnDef<Category>[] = [
                 width={80}
                 height={80}
                 className="rounded-md object-center aspect-square"
-
             />
         ),
     },
@@ -50,6 +50,14 @@ export const categoryColumns: ColumnDef<Category>[] = [
         header: () => <div>Slug</div>,
         cell: ({row}) => {
             return <div className="font-medium">/category/{row.getValue("slug")}</div>
+        },
+    },
+    {
+        accessorKey: "category",
+        header: () => <div>Category</div>,
+        cell: ({row}) => {
+            const category = row.getValue("category") as Category
+            return <Link href={"/dashboard/admin/categories"}  className="font-medium text-blue-500 underline">{category.name}</Link>
         },
     },
     {
@@ -76,7 +84,7 @@ export const categoryColumns: ColumnDef<Category>[] = [
         enableHiding: false,
         cell: ({row}) => (
             <div className="text-center">
-                <CategoryActionsCell category={row.original}/>
+                <SubcategoryActionsCell subcategory={row.original}/>
             </div>
         ),
     },

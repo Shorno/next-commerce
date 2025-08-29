@@ -22,6 +22,27 @@
       "when": 1756385632898,
       "tag": "0002_tough_starfox",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1756456713213,
+      "tag": "0003_steady_ronan",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1756460260106,
+      "tag": "0004_complex_christian_walker",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1756460313393,
+      "tag": "0005_many_rogue",
+      "breakpoints": true
     }
   ]
 }
