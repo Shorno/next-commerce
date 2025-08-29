@@ -2,7 +2,7 @@
 
 import type {ColumnDef} from "@tanstack/react-table"
 import {Checkbox} from "@/components/ui/checkbox"
-import type {Subcategory} from "@/db/schema"
+import type {Category, Subcategory} from "@/db/schema"
 import Image from "next/image"
 import {SubcategoryActionsCell} from "@/app/dashboard/admin/sub-categories/_components/subcategory-actions-cell";
 import Link from "next/link";
@@ -56,7 +56,7 @@ export const subcategoryColumns: ColumnDef<Subcategory>[] = [
         accessorKey: "category",
         header: () => <div>Category</div>,
         cell: ({row}) => {
-            const category = row.getValue("category") as any
+            const category = row.getValue("category") as Category
             return <Link href={"/dashboard/admin/categories"}  className="font-medium text-blue-500 underline">{category.name}</Link>
         },
     },
