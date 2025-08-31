@@ -1,9 +1,9 @@
 "use server"
 import {db} from "@/db";
-import {categories} from "@/db/schema";
 import {revalidatePath} from "next/cache";
 import {eq} from "drizzle-orm";
 import {CategoryFormData} from "@/zodSchema/category";
+import {categories} from "@/db/schema";
 
 interface Response {
     statusCode: number,

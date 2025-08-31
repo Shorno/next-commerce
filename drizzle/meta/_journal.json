@@ -43,6 +43,13 @@
       "when": 1756460313393,
       "tag": "0005_many_rogue",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1756483966776,
+      "tag": "0006_quiet_grey_gargoyle",
+      "breakpoints": true
     }
   ]
 }

@@ -1,10 +1,9 @@
 import {currentUser} from "@clerk/nextjs/server";
-import {db} from "@/db";
 import {redirect} from "next/navigation";
+import {db} from "@/db";
 
-export default async function SellerDashboardPage() {
+export default async function SellerStoreLayout({children}: { children: React.ReactNode }) {
     const user = await currentUser()
-
 
     if (!user?.id) {
         redirect("/")
@@ -19,5 +18,9 @@ export default async function SellerDashboardPage() {
     }
 
     redirect(`/dashboard/seller/stores/${store.slug}`)
-
+    return (
+        <>
+            {children}
+        </>
+    )
 }

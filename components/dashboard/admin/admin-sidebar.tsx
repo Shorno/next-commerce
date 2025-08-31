@@ -7,7 +7,7 @@ import {
     GalleryVerticalEnd, type LucideIcon,
 } from "lucide-react"
 
-import {NavMain} from "@/components/sidebar/nav-main"
+import {AdminNav} from "@/components/sidebar/admin-nav"
 import {NavUser} from "@/components/sidebar/nav-user"
 import {TeamSwitcher} from "@/components/sidebar/team-switcher"
 import {
@@ -90,7 +90,7 @@ const navMain: NavItem[] = [
     },
 ]
 
-export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+export function AdminSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
     const {isLoaded, user} = useUser()
     return (
         <Sidebar collapsible="offcanvas" {...props}>
@@ -99,7 +99,7 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <SearchInput/>
-                <NavMain items={navMain}/>
+                <AdminNav items={navMain}/>
             </SidebarContent>
             <SidebarFooter>
                 {isLoaded ? <NavUser user={user}/> : <UserNavSkeleton/>}

@@ -1,18 +1,5 @@
-import {boolean, index, integer, pgEnum, pgTable, timestamp, varchar} from "drizzle-orm/pg-core";
+import {boolean, index, integer, pgTable, timestamp, varchar} from "drizzle-orm/pg-core";
 import {relations} from "drizzle-orm";
-
-export const roleEnum = pgEnum("user_roles", ["USER", "SELLER", "ADMIN"]);
-
-export const users = pgTable("users", {
-    id: varchar({length: 255}).notNull().primaryKey(),
-    name: varchar({length: 255}).notNull(),
-    email: varchar({length: 255}).notNull().unique(),
-    image: varchar({length: 255}).notNull().unique(),
-    role: roleEnum("role").notNull().default("USER"),
-    createdAt: timestamp().notNull().defaultNow(),
-    updatedAt: timestamp().notNull().defaultNow(),
-});
-
 
 export const categories = pgTable("categories", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -38,13 +25,13 @@ export const subcategories = pgTable("subcategories", {
         createdAt: timestamp().notNull().defaultNow(),
         updatedAt: timestamp().notNull().defaultNow(),
     },
-    (table) => ({
-        categoryIdx: index("idx_subcategories_category_id").on(table.categoryId)
-    })
+    (table) => [
+        index("idx_subcategories_category_id").on(table.categoryId)
+    ]
 )
 
 export const categoriesRelations = relations(categories, ({many}) => ({
-    subcategories: many(categories)
+    subcategories: many(subcategories)
 }))
 
 export const subcategoriesRelations = relations(subcategories, ({one}) => ({
@@ -54,8 +41,5 @@ export const subcategoriesRelations = relations(subcategories, ({one}) => ({
     })
 }))
 
-
-export type NewUser = typeof users.$inferInsert
-export type UserRole = typeof roleEnum.enumValues[number]
 export type Category = typeof categories.$inferSelect
 export type Subcategory = typeof subcategories.$inferSelect
