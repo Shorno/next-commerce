@@ -1,4 +1,4 @@
-import {boolean, index, integer, numeric, pgEnum, pgTable, text, timestamp, varchar} from "drizzle-orm/pg-core";
+import {boolean, index, integer, numeric, pgEnum, pgTable, text, varchar} from "drizzle-orm/pg-core";
 import {users} from "@/db/schema/user";
 import {relations} from "drizzle-orm";
 import {timestamps} from "@/db/columns.helpers";

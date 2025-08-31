@@ -7,7 +7,6 @@ import {
     GalleryVerticalEnd, type LucideIcon,
 } from "lucide-react"
 
-import {AdminNav} from "@/components/sidebar/admin-nav"
 import {NavUser} from "@/components/sidebar/nav-user"
 import {TeamSwitcher} from "@/components/sidebar/team-switcher"
 import {
@@ -19,7 +18,7 @@ import {
 } from "@/components/ui/sidebar"
 import {useUser} from "@clerk/nextjs";
 import UserNavSkeleton from "@/components/sidebar/user-nav-skeleton";
-import {DashboardIcon, CartIcon, StoreIcon, SubCategoryIcon, CategoryIcon, CouponIcon} from "@/components/icons";
+import {DashboardIcon, CartIcon, CouponIcon} from "@/components/icons";
 import SearchInput from "@/components/SearchInput";
 import Products from "@/components/icons/Products";
 import InventoryIcon from "@/components/icons/InventoryIcon";

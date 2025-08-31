@@ -40,7 +40,7 @@ export const storeSchema = z.object({
         .string()
         .min(10, "Phone number must be at least 10 characters")
         .max(15, "Phone number cannot exceed 15 characters")
-        .regex(/^[+]?[\d\s\-\(\)]+$/, "Please enter a valid phone number")
+        .regex(/^[+]?[\d\s\-()]+$/, "Please enter a valid phone number")
         .trim(),
 
 
