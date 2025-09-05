@@ -1,19 +1,13 @@
-import {validateStoreAccess} from "@/lib/store-validation";
+import {Suspense} from "react";
+import StoreInfo from "@/app/dashboard/seller/(store)/stores/[slug]/_components/store-info";
 
-interface SellerStorePageProps {
-    params: Promise<{ slug: string }>;
-}
-
-export default async function SellerStorePage({params}: SellerStorePageProps) {
-    const {slug} = await params
-    const store = await validateStoreAccess(slug);
-
+export default async function SellerStorePage() {
 
     return (
         <>
-            <h1>Store: {store?.name}</h1>
-            <p>Store slug: {store?.slug}</p>
-            {/* Your store dashboard content here */}
+            <Suspense fallback={"loading store data..."}>
+                <StoreInfo/>
+            </Suspense>
         </>
     );
 }
