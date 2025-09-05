@@ -12,6 +12,8 @@ export default async function DashboardPage() {
         USER: "/",
     };
 
+
+
     redirect(redirectMap[role] ?? "/");
 
 }

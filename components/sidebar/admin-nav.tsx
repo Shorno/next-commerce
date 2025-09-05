@@ -4,9 +4,9 @@ import type React from "react"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import {NavItem} from "@/components/sidebar/app-sidebar";
+import {NavItem} from "@/components/dashboard/admin/admin-sidebar";
 
-export function NavMain({items} : {items: NavItem[]}) {
+export function AdminNav({items} : {items: NavItem[]}) {
     const pathname = usePathname()
 
     return (

@@ -1,6 +1,6 @@
 import {verifyWebhook, WebhookEvent} from '@clerk/nextjs/webhooks'
 import {NextRequest} from 'next/server'
-import {NewUser, users, roleEnum, UserRole} from "@/db/schema";
+import {users, roleEnum, UserRole, User} from "@/db/schema";
 import {db} from "@/db";
 import {clerkClient} from "@clerk/nextjs/server";
 import {eq} from "drizzle-orm";
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
             const validRoles = roleEnum.enumValues;
             const role = validRoles.includes(clerkRole as UserRole) ? clerkRole as UserRole : "USER";
 
-            const user: NewUser = {
+            const user: User = {
                 id: evt.data.id,
                 name: `${evt.data.first_name || ''} ${evt.data.last_name || ''}`.trim(),
                 email: evt.data.email_addresses[0].email_address,

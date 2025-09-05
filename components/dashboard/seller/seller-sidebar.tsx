@@ -7,7 +7,6 @@ import {
     GalleryVerticalEnd, type LucideIcon,
 } from "lucide-react"
 
-import {NavMain} from "@/components/sidebar/nav-main"
 import {NavUser} from "@/components/sidebar/nav-user"
 import {TeamSwitcher} from "@/components/sidebar/team-switcher"
 import {
@@ -19,8 +18,12 @@ import {
 } from "@/components/ui/sidebar"
 import {useUser} from "@clerk/nextjs";
 import UserNavSkeleton from "@/components/sidebar/user-nav-skeleton";
-import {DashboardIcon, CartIcon, StoreIcon, SubCategoryIcon, CategoryIcon, CouponIcon} from "@/components/icons";
+import {DashboardIcon, CartIcon, CouponIcon} from "@/components/icons";
 import SearchInput from "@/components/SearchInput";
+import Products from "@/components/icons/Products";
+import InventoryIcon from "@/components/icons/InventoryIcon";
+import SettingsIcon from "@/components/icons/SettingsIcon";
+import {SellerNav} from "@/components/dashboard/seller/seller-nav";
 
 
 const data = {
@@ -49,48 +52,54 @@ const data = {
 
 }
 
-export interface NavItem {
+export interface SellerNavItem {
     title: string
     url: string
+    postUrL: string
     icon: LucideIcon | React.ComponentType
-    isActive?: boolean
 }
 
-const navMain: NavItem[] = [
+const navMain: SellerNavItem[] = [
     {
-        title: "Admin",
-        url: "/dashboard/admin",
+        title: "Dashboard",
+        url: "/dashboard/",
+        postUrL: "",
         icon: DashboardIcon,
-        isActive: true,
     },
     {
-        title: "Stores",
-        url: "/dashboard/admin/stores",
-        icon: StoreIcon,
+        title: "Products",
+        url: "/dashboard/seller/products",
+        postUrL: "products",
+        icon: Products,
     },
     {
         title: "Orders",
-        url: "/dashboard/admin/orders",
+        url: "/dashboard/seller/orders",
+        postUrL: "orders",
         icon: CartIcon,
     },
     {
-        title: "Categories",
-        url: "/dashboard/admin/categories",
-        icon: CategoryIcon,
-    },
-    {
-        title: "Sub Categories",
-        url: "/dashboard/admin/sub-categories",
-        icon: SubCategoryIcon,
+        title: "Inventory",
+        url: "/dashboard/seller/inventory",
+        postUrL: "inventory",
+        icon: InventoryIcon,
     },
     {
         title: "Coupons",
-        url: "/dashboard/admin/coupons",
+        url: "/dashboard/seller/coupons",
+        postUrL: "coupons",
         icon: CouponIcon,
     },
+    {
+        title: "Settings",
+        url: "/dashboard/seller/settings",
+        postUrL: "settings",
+        icon: SettingsIcon,
+    },
+
 ]
 
-export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+export function SellerSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
     const {isLoaded, user} = useUser()
     return (
         <Sidebar collapsible="offcanvas" {...props}>
@@ -99,7 +108,7 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <SearchInput/>
-                <NavMain items={navMain}/>
+                <SellerNav items={navMain}/>
             </SidebarContent>
             <SidebarFooter>
                 {isLoaded ? <NavUser user={user}/> : <UserNavSkeleton/>}
