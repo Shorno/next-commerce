@@ -150,7 +150,7 @@ export function StoreForm({mode, store}: StoreFormProps) {
                                                                             Cover Photo</h3>
                                                                         <p className="text-sm text-muted-foreground max-w-sm">
                                                                             Upload a stunning cover image that
-                                                                            represents your store's brand and
+                                                                            represents your store&apos;s brand and
                                                                             personality
                                                                         </p>
                                                                         <p className="text-xs text-muted-foreground mt-2 opacity-75">
@@ -204,10 +204,12 @@ export function StoreForm({mode, store}: StoreFormProps) {
                                                                     </div>
                                                                 ) : previewUrl ? (
                                                                     <div className="relative h-full group">
-                                                                        <img
+                                                                        <Image
                                                                             src={previewUrl || "/placeholder.svg"}
                                                                             alt="Store logo"
                                                                             className="w-full h-full object-cover"
+                                                                            width={400}
+                                                                            height={250}
                                                                         />
                                                                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                                                             <div className="flex gap-2">

@@ -1,4 +1,3 @@
-"use client"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -14,15 +13,8 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar"
 import {SellerSidebar} from "@/components/dashboard/seller/seller-sidebar";
-import {usePathname} from "next/navigation";
 
 export default function SellerDashboardLayout({children}: { children: React.ReactNode }) {
-    const pathname = usePathname()
-    const isNewStorePage = pathname === '/dashboard/seller/stores/new'
-
-    if (isNewStorePage) {
-        return <div className="p-6">{children}</div>
-    }
 
     return (
         <SidebarProvider>

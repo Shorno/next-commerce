@@ -1,6 +1,7 @@
 import {z} from "zod";
 
 export const storeSchema = z.object({
+    ownerId: z.string().min(1, "Owner ID is required"),
     name: z
         .string()
         .min(2, "Store name must be at least 2 characters")
@@ -92,9 +93,9 @@ export const storeSchema = z.object({
 },);
 
 export const basicInfoSchema = storeSchema.pick({
+    slug: true,
     logo: true,
     name: true,
-    slug: true,
     description: true,
 })
 
@@ -120,3 +121,35 @@ export type StoreFormData = z.infer<typeof storeSchema>;
 export type  BasicInfoFormData = z.infer<typeof basicInfoSchema>;
 export type  StoreContactFormData = z.infer<typeof storeContactSchema>;
 export type  StorePolicyFormData = z.infer<typeof storePolicySchema>;
+
+// Create a schema for form submission that excludes ownerId (since it's set server-side)
+export const storeSubmissionSchema = storeSchema.omit({ ownerId: true });
+
+// Type for complete form submission (all required fields present)
+export type StoreSubmissionData = z.infer<typeof storeSubmissionSchema>;
+
+// Type for partial form data during multi-step process
+export type PartialStoreSubmissionData = Partial<StoreSubmissionData>;
+
+// Helper function to validate complete form data before submission
+export function validateCompleteStoreForm(data: PartialStoreSubmissionData): data is StoreSubmissionData {
+  try {
+    storeSubmissionSchema.parse(data);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Function to get missing fields for validation
+export function getMissingStoreFields(data: PartialStoreSubmissionData): string[] {
+  try {
+    storeSubmissionSchema.parse(data);
+    return [];
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return error.issues.map(issue => issue.path.join('.'));
+    }
+    return ['Unknown validation error'];
+  }
+}

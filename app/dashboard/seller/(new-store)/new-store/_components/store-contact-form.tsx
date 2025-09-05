@@ -17,6 +17,7 @@ export default function StoreContactForm() {
 
     const form = useForm<StoreContactFormData>({
         resolver: zodResolver(storeContactSchema),
+        mode: "onChange",
         defaultValues: {
             cover: data?.cover || "",
             email: data?.email || "",
@@ -54,7 +55,6 @@ export default function StoreContactForm() {
         <div className="max-w-4xl mx-auto">
             <Form {...form}>
                 <form className="space-y-0" onChange={() => setFormData(form.getValues())}>
-                    {/* Cover Photo Section */}
                     <div className="relative rounded-t-2xl overflow-hidden">
                         <FormField
                             name="cover"
@@ -121,7 +121,7 @@ export default function StoreContactForm() {
                                                                         </div>
                                                                         <h3 className="text-lg font-semibold text-foreground mb-2">Add Cover Photo</h3>
                                                                         <p className="text-sm text-muted-foreground max-w-sm">
-                                                                            Upload a stunning cover image that represents your store's brand and personality
+                                                                            Upload a stunning cover image that represents your store&apos;s brand and personality
                                                                         </p>
                                                                         <p className="text-xs text-muted-foreground mt-2 opacity-75">
                                                                             Recommended: (16:9 ratio)
@@ -141,9 +141,8 @@ export default function StoreContactForm() {
                         />
                     </div>
 
-                    {/* Contact Information Section */}
-                    <div className="bg-card rounded-b-2xl border border-t-0 border-border/50 p-8">
-                        <div className="bg-gradient-to-br from-background to-muted/20 rounded-2xl border border-border/50 p-6 space-y-6">
+                    <div className="bg-card rounded-b-2xl border border-t-0 border-border/50 p-4 md:p-8">
+                        <div className="bg-gradient-to-br from-background to-muted/20 rounded-2xl border border-border/50 p-4 md:p-6 space-y-6">
                             <div className="flex items-center space-x-3">
                                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
                                     <Mail className="w-5 h-5 text-white"/>

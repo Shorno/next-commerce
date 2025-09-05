@@ -6,6 +6,7 @@ import { useState, useTransition, type ReactNode } from "react"
 import { toast } from "sonner"
 import { deleteImageFromCloudinary, uploadSingleImageToCloudinary } from "@/actions/cloudinary"
 import { getPublicIdFromUrl } from "@/utils/getPublicIdFromUrl"
+import Image from "next/image";
 
 interface SingleImageUploadProps {
     value?: string
@@ -193,7 +194,7 @@ export default function SingleImageUpload({
                         </div>
                     ) : previewUrl ? (
                         <div className="absolute inset-0 flex items-center justify-center p-4">
-                            <img
+                            <Image
                                 src={previewUrl || "/placeholder.svg"}
                                 alt="Uploaded image"
                                 className="mx-auto max-h-full rounded object-contain"

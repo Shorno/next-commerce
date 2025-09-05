@@ -1,23 +1,24 @@
 "use client"
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form"
-import { BasicInfoFormData, basicInfoSchema } from "@/zodSchema/store"
-import { Input } from "@/components/ui/input"
-import { useStoreForm } from "@/store/storeFormStore"
-import { Textarea } from "@/components/ui/textarea"
-import { useEffect, useState } from "react"
-import { StoreIcon, Camera, XIcon, LoaderIcon } from "lucide-react"
+import {useForm} from "react-hook-form"
+import {zodResolver} from "@hookform/resolvers/zod"
+import {Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription} from "@/components/ui/form"
+import {BasicInfoFormData, basicInfoSchema} from "@/zodSchema/store"
+import {Input} from "@/components/ui/input"
+import {useStoreForm} from "@/store/storeFormStore"
+import {Textarea} from "@/components/ui/textarea"
+import {useEffect, useState} from "react"
+import {StoreIcon, Camera, XIcon, LoaderIcon} from "lucide-react"
 import SingleImageUpload from "@/components/single-image-upload"
 import Image from "next/image"
 
 export default function BasicInfoForm() {
-    const { data, setFormData } = useStoreForm()
+    const {data, setFormData} = useStoreForm()
     const [isHydrated, setIsHydrated] = useState(false)
 
     const form = useForm<BasicInfoFormData>({
         resolver: zodResolver(basicInfoSchema),
+        mode: "onChange",
         defaultValues: {
             name: data?.name || "",
             slug: data?.slug || "",
@@ -58,7 +59,7 @@ export default function BasicInfoForm() {
         <div className="max-w-4xl mx-auto">
             <Form {...form}>
                 <form className="space-y-0" onChange={() => setFormData(form.getValues())}>
-                    <div className="bg-card rounded-2xl border border-border/50 p-8 space-y-8">
+                    <div className="bg-card rounded-2xl border border-border/50 p-4 md:p-8 space-y-8">
                         <div className="flex flex-col lg:flex-row gap-8">
                             {/* Logo Upload Section */}
                             <div className="lg:w-1/3">
@@ -69,7 +70,7 @@ export default function BasicInfoForm() {
                                 <FormField
                                     control={form.control}
                                     name="logo"
-                                    render={({ field }) => (
+                                    render={({field}) => (
                                         <FormItem>
                                             <div className="relative">
                                                 <FormControl>
@@ -80,7 +81,14 @@ export default function BasicInfoForm() {
                                                         className="border-0 bg-transparent"
                                                         showError={false}
                                                     >
-                                                        {({ isDragging, isPending, isDeleting, previewUrl, openFileDialog, removeImage }) => (
+                                                        {({
+                                                              isDragging,
+                                                              isPending,
+                                                              isDeleting,
+                                                              previewUrl,
+                                                              openFileDialog,
+                                                              removeImage
+                                                          }) => (
                                                             <div
                                                                 className={`aspect-square bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl border-2 border-dashed border-primary/20 overflow-hidden group hover:border-primary/40 transition-all duration-300 cursor-pointer ${
                                                                     isDragging ? "border-primary/60 bg-primary/10" : ""
@@ -88,8 +96,10 @@ export default function BasicInfoForm() {
                                                                 onClick={!previewUrl ? openFileDialog : undefined}
                                                             >
                                                                 {isPending || isDeleting ? (
-                                                                    <div className="h-full flex flex-col items-center justify-center">
-                                                                        <LoaderIcon className="w-8 h-8 animate-spin text-primary mb-3" />
+                                                                    <div
+                                                                        className="h-full flex flex-col items-center justify-center">
+                                                                        <LoaderIcon
+                                                                            className="w-8 h-8 animate-spin text-primary mb-3"/>
                                                                         <p className="text-sm font-medium text-foreground">
                                                                             {isPending ? "Uploading..." : "Removing..."}
                                                                         </p>
@@ -102,7 +112,8 @@ export default function BasicInfoForm() {
                                                                             fill
                                                                             className="object-cover"
                                                                         />
-                                                                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                                        <div
+                                                                            className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                                                             <div className="flex gap-2">
                                                                                 <button
                                                                                     type="button"
@@ -112,7 +123,8 @@ export default function BasicInfoForm() {
                                                                                     }}
                                                                                     className="bg-background/90 backdrop-blur-sm rounded-lg p-2 hover:bg-background transition-colors"
                                                                                 >
-                                                                                    <Camera className="w-5 h-5 text-foreground" />
+                                                                                    <Camera
+                                                                                        className="w-5 h-5 text-foreground"/>
                                                                                 </button>
                                                                                 <button
                                                                                     type="button"
@@ -122,18 +134,24 @@ export default function BasicInfoForm() {
                                                                                     }}
                                                                                     className="bg-red-500/90 backdrop-blur-sm rounded-lg p-2 hover:bg-red-600 transition-colors"
                                                                                 >
-                                                                                    <XIcon className="w-4 h-4 text-white" />
+                                                                                    <XIcon
+                                                                                        className="w-4 h-4 text-white"/>
                                                                                 </button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 ) : (
-                                                                    <div className="h-full flex flex-col items-center justify-center p-6 text-center">
-                                                                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
-                                                                            <StoreIcon className="w-8 h-8 text-primary" />
+                                                                    <div
+                                                                        className="h-full flex flex-col items-center justify-center p-6 text-center">
+                                                                        <div
+                                                                            className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                                                                            <StoreIcon
+                                                                                className="w-8 h-8 text-primary"/>
                                                                         </div>
-                                                                        <p className="text-base font-semibold text-foreground mb-2">Upload Store Logo</p>
-                                                                        <p className="text-sm text-muted-foreground mb-1">Click or drag & drop</p>
+                                                                        <p className="text-base font-semibold text-foreground mb-2">Upload
+                                                                            Store Logo</p>
+                                                                        <p className="text-sm text-muted-foreground mb-1">Click
+                                                                            or drag & drop</p>
                                                                         <p className="text-xs text-muted-foreground opacity-75">
                                                                             Square format recommended
                                                                         </p>
@@ -144,7 +162,7 @@ export default function BasicInfoForm() {
                                                     </SingleImageUpload>
                                                 </FormControl>
                                             </div>
-                                            <FormMessage className="text-xs mt-2" />
+                                            <FormMessage className="text-xs mt-2"/>
                                         </FormItem>
                                     )}
                                 />
@@ -156,7 +174,7 @@ export default function BasicInfoForm() {
                                     <FormField
                                         control={form.control}
                                         name="name"
-                                        render={({ field }) => (
+                                        render={({field}) => (
                                             <FormItem>
                                                 <FormLabel className="text-sm font-semibold text-foreground">
                                                     Store Name
@@ -172,7 +190,7 @@ export default function BasicInfoForm() {
                                                         className="h-12 text-base bg-background/50 border-border/50 focus:border-primary/50 focus:bg-background transition-all duration-200"
                                                     />
                                                 </FormControl>
-                                                <FormMessage className="text-xs" />
+                                                <FormMessage className="text-xs"/>
                                             </FormItem>
                                         )}
                                     />
@@ -180,7 +198,7 @@ export default function BasicInfoForm() {
                                     <FormField
                                         control={form.control}
                                         name="slug"
-                                        render={({ field }) => (
+                                        render={({field}) => (
                                             <FormItem>
                                                 <FormLabel className="text-sm font-semibold text-foreground">
                                                     URL Slug
@@ -199,7 +217,7 @@ export default function BasicInfoForm() {
                                                 <FormDescription className="text-xs text-muted-foreground">
                                                     Auto-generated from store name
                                                 </FormDescription>
-                                                <FormMessage className="text-xs" />
+                                                <FormMessage className="text-xs"/>
                                             </FormItem>
                                         )}
                                     />
@@ -208,7 +226,7 @@ export default function BasicInfoForm() {
                                 <FormField
                                     control={form.control}
                                     name="description"
-                                    render={({ field }) => (
+                                    render={({field}) => (
                                         <FormItem>
                                             <FormLabel className="text-sm font-semibold text-foreground">
                                                 Store Description
@@ -223,7 +241,7 @@ export default function BasicInfoForm() {
                                             <FormDescription className="text-xs text-muted-foreground">
                                                 Share your story and what makes your store special
                                             </FormDescription>
-                                            <FormMessage className="text-xs" />
+                                            <FormMessage className="text-xs"/>
                                         </FormItem>
                                     )}
                                 />

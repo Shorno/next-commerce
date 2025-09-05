@@ -1,22 +1,19 @@
 import {create} from "zustand";
 import {
-    BasicInfoFormData,
-    StoreContactFormData, StorePolicyFormData,
+   PartialStoreSubmissionData
 } from "@/zodSchema/store";
 import {persist} from "zustand/middleware";
 import {immer} from "zustand/middleware/immer"
 
-type FormData = Partial<BasicInfoFormData & StoreContactFormData & StorePolicyFormData>
-
 interface StoreFormState {
     step: 1 | 2 | 3 | 4,
-    data: FormData
+    data: PartialStoreSubmissionData
     setStep: (step: 1 | 2 | 3 | 4) => void
 
 
     nextStep: () => void,
     prevStep: () => void,
-    setFormData: (data: Partial<FormData>) => void,
+    setFormData: (data: Partial<PartialStoreSubmissionData>) => void,
     resetForm: () => void,
 }
 

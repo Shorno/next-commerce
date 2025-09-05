@@ -16,6 +16,7 @@ export default function StorePolicyForm() {
 
     const form = useForm<StorePolicyFormData>({
         resolver: zodResolver(storePolicySchema),
+        mode: "onChange",
         defaultValues: {
             defaultShippingService: data?.defaultShippingService || "",
             defaultShippingCost: data?.defaultShippingCost || "0",

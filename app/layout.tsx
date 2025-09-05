@@ -41,13 +41,7 @@ export default function RootLayout({
                 enableColorScheme
             >
                 {children}
-                <Toaster position={"top-right"} richColors={true} icons={
-                    {
-                        success: "✅",
-                        error: "❌",
-                        loading: "⏳",
-                    }
-                }/>
+                <Toaster position={"top-right"} richColors={true}/>
             </ThemeProvider>
             </body>
             </html>
