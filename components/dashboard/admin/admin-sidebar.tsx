@@ -9,7 +9,6 @@ import {
 
 import {AdminNav} from "@/components/sidebar/admin-nav"
 import {NavUser} from "@/components/sidebar/nav-user"
-import {TeamSwitcher} from "@/components/sidebar/team-switcher"
 import {
     Sidebar,
     SidebarContent,
@@ -21,6 +20,7 @@ import {useUser} from "@clerk/nextjs";
 import UserNavSkeleton from "@/components/sidebar/user-nav-skeleton";
 import {DashboardIcon, CartIcon, StoreIcon, SubCategoryIcon, CategoryIcon, CouponIcon} from "@/components/icons";
 import SearchInput from "@/components/SearchInput";
+import {TeamSwitcher} from "@/components/sidebar/store-switcher";
 
 
 const data = {

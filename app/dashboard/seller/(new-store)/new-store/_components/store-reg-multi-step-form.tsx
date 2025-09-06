@@ -9,7 +9,7 @@ import {
     validateCompleteStoreForm
 } from "@/zodSchema/store";
 import {toast} from "sonner";
-import {createStore} from "@/actions/storeActions";
+import {createStore} from "@/actions/store/storeActions";
 import NewStepperIndicator from "@/app/dashboard/seller/(new-store)/new-store/_components/stepper-indicator";
 import FormNavigation from "@/app/dashboard/seller/(new-store)/new-store/_components/form-navigation";
 import {Eye, Mail, Shield, Store} from "lucide-react";
