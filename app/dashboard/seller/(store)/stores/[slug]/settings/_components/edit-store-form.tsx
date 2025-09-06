@@ -208,7 +208,7 @@ export default function EditStoreForm({mode, store}: StoreFormProps) {
                                                                                     Cover Photo</h3>
                                                                                 <p className="text-sm text-muted-foreground max-w-sm">
                                                                                     Upload a stunning cover image that
-                                                                                    represents your store's brand and
+                                                                                    represents your store&apos;s brand and
                                                                                     personality
                                                                                 </p>
                                                                                 <p className="text-xs text-muted-foreground mt-2 opacity-75">

@@ -1,13 +1,10 @@
 "use client"
 import * as React from "react"
 import {
-    AudioWaveform,
-    Command,
-    GalleryVerticalEnd, type LucideIcon,
+    type LucideIcon,
 } from "lucide-react"
 
 import {NavUser} from "@/components/sidebar/nav-user"
-import {StoreSwitcher} from "@/components/sidebar/store-switcher"
 import {
     Sidebar,
     SidebarContent,
@@ -24,33 +21,7 @@ import InventoryIcon from "@/components/icons/InventoryIcon";
 import SettingsIcon from "@/components/icons/SettingsIcon";
 import {SellerNav} from "@/components/dashboard/seller/seller-nav";
 import {Store} from "@/db/schema";
-
-
-const data = {
-    user: {
-        name: "shadcn",
-        email: "m@example.com",
-        avatar: "/avatars/shadcn.jpg",
-    },
-    teams: [
-        {
-            name: "Acme Inc",
-            logo: GalleryVerticalEnd,
-            plan: "Enterprise",
-        },
-        {
-            name: "Acme Corp.",
-            logo: AudioWaveform,
-            plan: "Startup",
-        },
-        {
-            name: "Evil Corp.",
-            logo: Command,
-            plan: "Free",
-        },
-    ],
-
-}
+import {StoreSwitcher} from "@/components/dashboard/seller/store-switcher";
 
 export interface SellerNavItem {
     title: string
