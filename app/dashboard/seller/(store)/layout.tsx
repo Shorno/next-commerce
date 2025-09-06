@@ -13,12 +13,15 @@ import {
     SidebarTrigger,
 } from "@/components/ui/sidebar"
 import {SellerSidebar} from "@/components/dashboard/seller/seller-sidebar";
+import {getActiveStores} from "@/actions/store/getStore";
 
-export default function SellerDashboardLayout({children}: { children: React.ReactNode }) {
+
+export default async function SellerDashboardLayout({children}: { children: React.ReactNode }) {
+    const stores = await  getActiveStores();
 
     return (
         <SidebarProvider>
-            <SellerSidebar variant={"sidebar"}/>
+            <SellerSidebar variant={"sidebar"} stores={stores}/>
             <SidebarInset>
                 <header
                     className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
@@ -45,8 +48,8 @@ export default function SellerDashboardLayout({children}: { children: React.Reac
                         </div>
                     </div>
                 </header>
-                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                    <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xs md:min-h-min p-4 ">
+                <div className="flex flex-1 flex-col gap-4 md:p-4 pt-0">
+                    <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xs md:min-h-min p-4 md:p-0 ">
                         {children}
                     </div>
                 </div>

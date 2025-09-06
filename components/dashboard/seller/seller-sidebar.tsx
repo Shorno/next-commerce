@@ -1,5 +1,4 @@
 "use client"
-
 import * as React from "react"
 import {
     AudioWaveform,
@@ -8,7 +7,7 @@ import {
 } from "lucide-react"
 
 import {NavUser} from "@/components/sidebar/nav-user"
-import {TeamSwitcher} from "@/components/sidebar/team-switcher"
+import {StoreSwitcher} from "@/components/sidebar/store-switcher"
 import {
     Sidebar,
     SidebarContent,
@@ -24,6 +23,7 @@ import Products from "@/components/icons/Products";
 import InventoryIcon from "@/components/icons/InventoryIcon";
 import SettingsIcon from "@/components/icons/SettingsIcon";
 import {SellerNav} from "@/components/dashboard/seller/seller-nav";
+import {Store} from "@/db/schema";
 
 
 const data = {
@@ -99,12 +99,18 @@ const navMain: SellerNavItem[] = [
 
 ]
 
-export function SellerSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+interface SellerSidebarProps extends React.ComponentProps<typeof Sidebar> {
+    stores: Store[]
+}
+
+export function SellerSidebar({stores, ...props}: SellerSidebarProps) {
     const {isLoaded, user} = useUser()
+
+    console.log(stores)
     return (
         <Sidebar collapsible="offcanvas" {...props}>
             <SidebarHeader>
-                <TeamSwitcher teams={data.teams}/>
+                <StoreSwitcher stores={stores}/>
             </SidebarHeader>
             <SidebarContent>
                 <SearchInput/>

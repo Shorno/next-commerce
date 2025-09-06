@@ -9,7 +9,7 @@ import {
 
 import {AdminNav} from "@/components/sidebar/admin-nav"
 import {NavUser} from "@/components/sidebar/nav-user"
-import {TeamSwitcher} from "@/components/sidebar/team-switcher"
+import {StoreSwitcher} from "@/components/sidebar/store-switcher"
 import {
     Sidebar,
     SidebarContent,
@@ -95,7 +95,7 @@ export function AdminSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
     return (
         <Sidebar collapsible="offcanvas" {...props}>
             <SidebarHeader>
-                <TeamSwitcher teams={data.teams}/>
+                <StoreSwitcher teams={data.teams}/>
             </SidebarHeader>
             <SidebarContent>
                 <SearchInput/>

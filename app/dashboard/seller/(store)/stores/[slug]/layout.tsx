@@ -10,6 +10,7 @@ interface SellerStoreLayoutProps {
 export default async function SellerStoreLayout({children, params}: SellerStoreLayoutProps) {
     const user = await currentUser()
     const {slug} = await params
+
     if (!user?.id) {
         redirect("/")
     }
@@ -28,7 +29,6 @@ export default async function SellerStoreLayout({children, params}: SellerStoreL
     if (!store) {
         notFound()
     }
-
 
 
     return (
