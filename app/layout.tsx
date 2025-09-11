@@ -1,10 +1,8 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
-import {ThemeProvider} from "next-themes";
 import {ClerkProvider} from "@clerk/nextjs";
 import {dark} from "@clerk/themes";
-import {Toaster} from "sonner";
 import Providers from "@/app/providers";
 
 const interFont = Inter({

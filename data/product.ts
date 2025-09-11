@@ -1,6 +1,6 @@
 import {queryOptions} from "@tanstack/react-query";
 import {getAllCategories} from "@/actions/admin/categoris";
-import {getSubcategoriesByCategory, getSubcategoryById} from "@/actions/admin/subcategories";
+import {getSubcategoriesByCategory} from "@/actions/admin/subcategories";
 
 export const categoryOptions = queryOptions({
     queryKey : ["categories"],

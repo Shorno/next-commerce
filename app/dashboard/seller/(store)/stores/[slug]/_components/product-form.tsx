@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useTransition} from "react"
+import {useTransition} from "react"
 import {useForm, useFieldArray} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod"
 import {
@@ -14,7 +14,7 @@ import {
     LoaderIcon,
     Camera,
     XIcon,
-    Info, Eye, Pipette,
+    Info, Pipette,
 } from "lucide-react"
 
 import {Button} from "@/components/ui/button"
