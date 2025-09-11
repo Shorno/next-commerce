@@ -49,7 +49,7 @@ export default async function SellerDashboardLayout({children}: { children: Reac
                     </div>
                 </header>
                 <div className="flex flex-1 flex-col gap-4 md:p-4 pt-0">
-                    <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xs md:min-h-min p-4 md:p-0 ">
+                    <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xs md:min-h-min  md:p-0 ">
                         {children}
                     </div>
                 </div>

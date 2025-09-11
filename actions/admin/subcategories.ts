@@ -81,6 +81,20 @@ export async function getAllSubcategories() {
     }
 }
 
+export async function getSubcategoriesByCategory(categoryId: number) {
+    try {
+        return await db.query.subcategories.findMany({
+            where: (sc, { eq }) => eq(sc.categoryId, categoryId),
+            with: { category: true },
+            orderBy: (sc, { asc }) => [asc(sc.name)],
+        });
+    } catch (error) {
+        console.error("Error fetching subcategories:", error);
+        return [];
+    }
+}
+
+
 export async function getSubcategoryById(id: number) {
     try {
         return await db.query.subcategories.findFirst({

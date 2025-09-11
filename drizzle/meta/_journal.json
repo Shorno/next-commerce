@@ -57,6 +57,27 @@
       "when": 1756720653856,
       "tag": "0007_cynical_patch",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1757273361458,
+      "tag": "0008_lyrical_eternity",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1757483839075,
+      "tag": "0009_unknown_ravenous",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1757489069115,
+      "tag": "0010_fair_diamondback",
+      "breakpoints": true
     }
   ]
 }

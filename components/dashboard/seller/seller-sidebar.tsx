@@ -77,7 +77,6 @@ interface SellerSidebarProps extends React.ComponentProps<typeof Sidebar> {
 export function SellerSidebar({stores, ...props}: SellerSidebarProps) {
     const {isLoaded, user} = useUser()
 
-    console.log(stores)
     return (
         <Sidebar collapsible="offcanvas" {...props}>
             <SidebarHeader>
