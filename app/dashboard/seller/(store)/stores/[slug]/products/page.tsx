@@ -1,8 +1,9 @@
-import ProductForm from "@/app/dashboard/seller/(store)/stores/[slug]/_components/product-form";
 import {getQueryClient} from "@/get-query-client";
 import {categoryOptions} from "@/data/product";
-import {HydrationBoundary, dehydrate} from "@tanstack/react-query";
 import {db} from "@/db";
+import {Suspense} from "react";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 interface SellerProductPageProps {
     params: Promise<{ slug: string }>;
@@ -38,14 +39,17 @@ export default async function SellerProductPage({params}: SellerProductPageProps
 
     })
 
-    console.log(storeProducts)
-
 
     return (
         <>
-            <HydrationBoundary state={dehydrate(queryClient)}>
-                <ProductForm activeStoreId={activeStore?.id}/>
-            </HydrationBoundary>
+            <Button asChild>
+                <Link href={`/dashboard/seller/stores/${slug}/products/new`}>New Product</Link>
+            </Button>
+            <Suspense fallback={"loading..."}>
+                {
+                    storeProducts.map((product) => <div key={product.id}>{product.name}</div>)
+                }
+            </Suspense>
         </>
     )
 }

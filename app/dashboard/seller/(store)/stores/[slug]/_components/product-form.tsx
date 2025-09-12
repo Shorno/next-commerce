@@ -32,10 +32,10 @@ import {categoryOptions, subCategoryOptions} from "@/data/product"
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 import SingleImageUpload from "@/components/single-image-upload"
 import Image from "next/image"
-import CloudinaryImageGrid from "@/components/cloudinary-image-grid";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import createProduct from "@/actions/store/createProduct";
 import {toast} from "sonner";
+import VariantsImageUploader from "@/components/variants-image-uploader";
 
 export default function ProductForm({activeStoreId}: { activeStoreId?: number }) {
     const [isPending, startTransition] = useTransition()
@@ -438,7 +438,7 @@ function VariantForm({
                          canRemove,
                      }: {
     variantIndex: number
-    form: any
+    form: ReturnType<typeof useForm<ProductFormData>>
     onRemove: () => void
     canRemove: boolean
 }) {
@@ -628,18 +628,12 @@ function VariantForm({
                         render={({field}) => (
                             <FormItem>
                                 <FormControl>
-                                    <CloudinaryImageGrid
-                                        value={field.value?.map((img: any) => img.imageUrl) || []}
-                                        onChange={(urls) => {
-                                            const imageObjects = urls.map((url, index) => ({
-                                                imageUrl: url,
-                                                altText: `Variant ${variantIndex + 1} image ${index + 1}`,
-                                            }))
-                                            field.onChange(imageObjects)
-                                        }}
-                                        folder={`products/variants`}
+                                    <VariantsImageUploader
+                                        value={field.value || []}
+                                        onChange={field.onChange}
                                         maxFiles={6}
                                         maxSizeMB={2}
+                                        folder={`products/variants}`}
                                     />
                                 </FormControl>
                                 <FormMessage/>
@@ -736,10 +730,10 @@ function VariantForm({
                                                                                 onClick={async () => {
                                                                                     if ('EyeDropper' in window) {
                                                                                         try {
-                                                                                            const eyeDropper = new (window as any).EyeDropper()
+                                                                                            const eyeDropper = new window.EyeDropper!()
                                                                                             const result = await eyeDropper.open()
                                                                                             field.onChange(result.sRGBHex)
-                                                                                        } catch (e) {
+                                                                                        } catch  {
                                                                                             console.log('User cancelled eyedropper')
                                                                                         }
                                                                                     } else {
