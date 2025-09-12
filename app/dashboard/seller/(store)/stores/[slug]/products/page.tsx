@@ -20,6 +20,26 @@ export default async function SellerProductPage({params}: SellerProductPageProps
         )
     })
 
+    if (!activeStore) {
+        return <div>Store not found</div>
+    }
+    const storeProducts = await db.query.products.findMany({
+        where: (product, {eq}) => eq(product.storeId, activeStore.id),
+        with: {
+            variants: {
+                with: {
+                    sizes: true,
+                    colors: true,
+                    images: true,
+                    specs: true
+                }
+            }
+        }
+
+    })
+
+    console.log(storeProducts)
+
 
     return (
         <>

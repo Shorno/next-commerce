@@ -78,6 +78,13 @@
       "when": 1757489069115,
       "tag": "0010_fair_diamondback",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1757637072354,
+      "tag": "0011_rare_mole_man",
+      "breakpoints": true
     }
   ]
 }

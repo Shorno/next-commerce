@@ -85,6 +85,7 @@ export default function ProductForm({activeStoreId}: { activeStoreId?: number })
     })
 
     const onSubmit = async (data: ProductFormData) => {
+        console.log(data)
         startTransition(async () => {
             try {
                 const response = await createProduct(data)

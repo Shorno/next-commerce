@@ -95,11 +95,9 @@ export const specs = pgTable("specs", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({length: 100}).notNull(),
     value: text().notNull(),
-    productId: integer().references(() => products.id, {onDelete: "cascade"}),
     variantId: integer().references(() => variants.id, {onDelete: "cascade"}),
     ...timestamps,
 }, (table) => [
-    index("idx_spec_product_id").on(table.productId),
     index("idx_spec_variant_id").on(table.variantId)
 ])
 
@@ -116,7 +114,7 @@ export const productsRelations = relations(products, ({one, many}) => ({
         fields: [products.subcategoryId],
         references: [subcategories.id]
     }),
-    variants: many(variants)
+    variants: many(variants),
 }))
 
 export const variantsRelations = relations(variants, ({one, many}) => ({
@@ -124,9 +122,19 @@ export const variantsRelations = relations(variants, ({one, many}) => ({
         fields: [variants.productId],
         references: [products.id]
     }),
+
     sizes: many(sizes),
     images: many(productVariantImages),
-    colors: many(colors)
+    colors: many(colors),
+    specs: many(specs),
+}))
+
+
+export const specsRelations = relations(specs, ({one}) => ({
+    variant: one(variants, {
+        fields: [specs.variantId],
+        references: [variants.id]
+    })
 }))
 
 export const sizesRelations = relations(sizes, ({one}) => ({
