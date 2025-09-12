@@ -2,6 +2,7 @@ import {boolean, index, integer, numeric, pgEnum, pgTable, text, varchar} from "
 import {users} from "@/db/schema/user";
 import {relations} from "drizzle-orm";
 import {timestamps} from "@/db/columns.helpers";
+import {products} from "@/db/schema/product-schema";
 
 export const storeStatusEnum = pgEnum("store_status", ["ACTIVE", "PENDING", "BANNED", "DISABLED"]);
 
@@ -31,11 +32,12 @@ export const stores = pgTable("stores", {
 ])
 
 
-export const storesRelations = relations(stores, ({one}) => ({
+export const storesRelations = relations(stores, ({one, many}) => ({
     owner: one(users, {
         fields: [stores.ownerId],
         references: [users.id]
-    })
+    }),
+    products: many(products)
 }))
 
 export type Store = typeof stores.$inferSelect;

@@ -13,5 +13,5 @@ export async function getActiveStores() {
             eq(store.status, "ACTIVE")
         )
     })
-
 }
+

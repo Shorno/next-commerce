@@ -3,7 +3,7 @@ import {currentUser} from "@clerk/nextjs/server";
 import {redirect} from "next/navigation";
 import {db} from "@/db";
 
-export default async function getActiveStore() {
+export default async function getActiveStores() {
     const user = await currentUser()
 
     if (!user) {

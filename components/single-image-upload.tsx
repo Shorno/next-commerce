@@ -1,6 +1,6 @@
 "use client"
 
-import type React from "react"
+import React, {useEffect} from "react"
 import { AlertCircleIcon, LoaderIcon } from "lucide-react"
 import { useState, useTransition, type ReactNode } from "react"
 import { toast } from "sonner"
@@ -40,6 +40,10 @@ export default function SingleImageUpload({
     const [isDeleting, startDeleteTransition] = useTransition()
     const [error, setError] = useState<string | null>(null)
     const [previewUrl, setPreviewUrl] = useState<string>(value || "")
+
+    useEffect(() => {
+        setPreviewUrl(value || "")
+    }, [value])
 
     const handleFileUpload = async (file: File) => {
         setError(null)

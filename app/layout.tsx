@@ -1,10 +1,9 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
-import {ThemeProvider} from "next-themes";
 import {ClerkProvider} from "@clerk/nextjs";
 import {dark} from "@clerk/themes";
-import {Toaster} from "sonner";
+import Providers from "@/app/providers";
 
 const interFont = Inter({
     subsets: ["latin"],
@@ -33,16 +32,9 @@ export default function RootLayout({
             <body
                 className={`${interFont.className} antialiased`}
             >
-            <ThemeProvider
-                attribute={"class"}
-                defaultTheme={"system"}
-                enableSystem
-                disableTransitionOnChange
-                enableColorScheme
-            >
+            <Providers>
                 {children}
-                <Toaster position={"top-right"} richColors={true}/>
-            </ThemeProvider>
+            </Providers>
             </body>
             </html>
         </ClerkProvider>

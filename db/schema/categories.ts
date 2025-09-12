@@ -1,5 +1,6 @@
 import {boolean, index, integer, pgTable, timestamp, varchar} from "drizzle-orm/pg-core";
 import {relations} from "drizzle-orm";
+import {products} from "@/db/schema/product-schema";
 
 export const categories = pgTable("categories", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -31,14 +32,16 @@ export const subcategories = pgTable("subcategories", {
 )
 
 export const categoriesRelations = relations(categories, ({many}) => ({
-    subcategories: many(subcategories)
+    subcategories: many(subcategories),
+    products: many(products)
 }))
 
-export const subcategoriesRelations = relations(subcategories, ({one}) => ({
+export const subcategoriesRelations = relations(subcategories, ({one, many}) => ({
     category: one(categories, {
         fields: [subcategories.categoryId],
         references: [categories.id]
-    })
+    }),
+    products: many(products)
 }))
 
 export type Category = typeof categories.$inferSelect

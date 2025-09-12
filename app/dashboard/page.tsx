@@ -1,7 +1,7 @@
 import {currentUser} from "@clerk/nextjs/server";
 import {UserRole} from "@/db/schema";
 import {redirect} from "next/navigation";
-import getActiveStore from "@/actions/store/getActiveStore";
+import getActiveStores from "@/actions/store/getActiveStores";
 
 export default async function DashboardPage() {
     const user = await currentUser();
@@ -17,7 +17,7 @@ export default async function DashboardPage() {
     if (role === "USER") {
         redirect("/dashboard")
     } else if (role === "SELLER") {
-        const activeStore = await getActiveStore();
+        const activeStore = await getActiveStores();
         if (activeStore) {
             redirect(`/dashboard/seller/stores/${activeStore.slug}`)
         } else {
