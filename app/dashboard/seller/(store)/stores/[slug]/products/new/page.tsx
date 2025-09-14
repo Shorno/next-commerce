@@ -25,6 +25,7 @@ export default async function NewProductPage({params}: NewProductPageProps){
     if (!activeStore) {
         return <div>Store not found</div>
     }
+
     return (
         <>
             <HydrationBoundary state={dehydrate(queryClient)}>

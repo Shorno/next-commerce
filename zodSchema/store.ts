@@ -153,3 +153,30 @@ export function getMissingStoreFields(data: PartialStoreSubmissionData): string[
     return ['Unknown validation error'];
   }
 }
+
+
+export const shippingDetailsSchema = z.object({
+    returnPolicy: z.string().min(10, "Return policy must be at least 10 characters").optional().or(z.literal("")),
+    defaultShippingService: z.string().min(1, "Shipping service is required").optional().or(z.literal("")),
+    defaultShippingCost: z.string().optional().or(z.literal("")),
+    defaultShippingCostPerItem: z.string().optional().or(z.literal("")),
+    defaultShippingCostAdditionalItem: z.string().optional().or(z.literal("")),
+    defaultShippingCostPerKg: z.string().optional().or(z.literal("")),
+    defaultShippingCostFixed: z.string().optional().or(z.literal("")),
+    minimumDeliveryTime: z.number().min(1, "Minimum delivery time must be at least 1 day").optional().nullable(),
+    maximumDeliveryTime: z.number().min(1, "Maximum delivery time must be at least 1 day").optional().nullable(),
+})
+    .refine(
+        (data) => {
+            if (data.minimumDeliveryTime && data.maximumDeliveryTime) {
+                return data.minimumDeliveryTime <= data.maximumDeliveryTime
+            }
+            return true
+        },
+        {
+            message: "Maximum delivery time must be greater than or equal to minimum delivery time",
+            path: ["maximumDeliveryTime"],
+        },
+    )
+
+export type ShippingDetailsFormData = z.infer<typeof shippingDetailsSchema>

@@ -20,7 +20,6 @@ interface ProductApiResponse {
 }
 
 export default async function createProduct(data: ProductFormData): Promise<ProductApiResponse> {
-    console.log(data)
     try {
         // Check if product with slug already exists
         const existingProduct = await db.query.products.findFirst({

@@ -19,11 +19,18 @@ export const stores = pgTable("stores", {
     status: storeStatusEnum("status").notNull().default("PENDING"),
     averageRating: integer().notNull().default(0),
     featured: boolean().default(false).notNull(),
+
+
     returnPolicy: text().default(""),
     defaultShippingService: varchar({length: 255}).default(""),
     defaultShippingCost: numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostPerItem : numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostAdditionalItem : numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostPerKg : numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostFixed : numeric({precision: 10, scale: 2}).default("0"),
     minimumDeliveryTime: integer().default(0),
     maximumDeliveryTime: integer().default(0),
+
     ownerId: varchar({length: 255}).notNull().references(() => users.id, {onDelete: "cascade"}),
     ...timestamps
 
