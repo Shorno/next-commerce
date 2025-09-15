@@ -3,6 +3,7 @@ import {users} from "@/db/schema/user";
 import {relations} from "drizzle-orm";
 import {timestamps} from "@/db/columns.helpers";
 import {products} from "@/db/schema/product-schema";
+import {shippingRates} from "@/db/schema/shipping";
 
 export const storeStatusEnum = pgEnum("store_status", ["ACTIVE", "PENDING", "BANNED", "DISABLED"]);
 
@@ -44,7 +45,9 @@ export const storesRelations = relations(stores, ({one, many}) => ({
         fields: [stores.ownerId],
         references: [users.id]
     }),
-    products: many(products)
+    products: many(products),
+    shippingRates : many(shippingRates)
+
 }))
 
 export type Store = typeof stores.$inferSelect;

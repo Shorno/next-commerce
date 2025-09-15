@@ -11,14 +11,14 @@ import {Badge} from "@/components/ui/badge"
 import {Separator} from "@/components/ui/separator"
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage, FormDescription} from "@/components/ui/form"
 import {Truck, Clock, DollarSign, Package, RotateCcw, Weight, Plus, Timer, Save, ArrowLeft} from "lucide-react"
-import {ShippingDetails, updateStoreShippingDetails} from "@/actions/store/storeShippingDetails";
+import {StoreShippingDetails, updateStoreShippingDetails} from "@/actions/store/storeShippingDetails";
 import {ShippingDetailsFormData, shippingDetailsSchema} from "@/zodSchema/store";
 import {useTransition} from "react";
 import {toast} from "sonner";
 
 
 interface ShippingDetailsEditFormProps {
-    shippingDetails: ShippingDetails | null
+    shippingDetails: StoreShippingDetails | null
     slug: string
 }
 
@@ -73,7 +73,7 @@ export default function ShippingDetailsEditForm({shippingDetails, slug}: Shippin
                         </Button>
                         <h1 className="text-3xl font-bold tracking-tight">Edit Shipping Details</h1>
                     </div>
-                    <p className="text-muted-foreground">Update your store's shipping information and policies</p>
+                    <p className="text-muted-foreground">Update your store&apos;s shipping information and policies</p>
                 </div>
                 <Badge variant="secondary">Draft</Badge>
             </div>

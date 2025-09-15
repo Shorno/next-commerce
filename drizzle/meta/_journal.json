@@ -92,6 +92,48 @@
       "when": 1757857409367,
       "tag": "0012_brief_joystick",
       "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1757881379411,
+      "tag": "0013_clear_punisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1757881574053,
+      "tag": "0014_steady_baron_zemo",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1757926330262,
+      "tag": "0015_outstanding_warbound",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1757945763710,
+      "tag": "0016_slim_gamora",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1757961786893,
+      "tag": "0017_special_brother_voodoo",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1757965805631,
+      "tag": "0018_wild_doctor_octopus",
+      "breakpoints": true
     }
   ]
 }

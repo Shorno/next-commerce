@@ -8,7 +8,6 @@ import type {Category} from "@/db/schema"
 import {CategoryModal} from "@/app/dashboard/admin/categories/_components/category-modal";
 import {ConfirmDeleteModal} from "@/app/dashboard/admin/categories/_components/confirm-delete-modal";
 
-
 interface CategoryActionsCellProps {
     category: Category
 }
