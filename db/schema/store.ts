@@ -3,6 +3,7 @@ import {users} from "@/db/schema/user";
 import {relations} from "drizzle-orm";
 import {timestamps} from "@/db/columns.helpers";
 import {products} from "@/db/schema/product-schema";
+import {shippingRates} from "@/db/schema/shipping";
 
 export const storeStatusEnum = pgEnum("store_status", ["ACTIVE", "PENDING", "BANNED", "DISABLED"]);
 
@@ -19,11 +20,18 @@ export const stores = pgTable("stores", {
     status: storeStatusEnum("status").notNull().default("PENDING"),
     averageRating: integer().notNull().default(0),
     featured: boolean().default(false).notNull(),
+
+
     returnPolicy: text().default(""),
     defaultShippingService: varchar({length: 255}).default(""),
     defaultShippingCost: numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostPerItem : numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostAdditionalItem : numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostPerKg : numeric({precision: 10, scale: 2}).default("0"),
+    defaultShippingCostFixed : numeric({precision: 10, scale: 2}).default("0"),
     minimumDeliveryTime: integer().default(0),
     maximumDeliveryTime: integer().default(0),
+
     ownerId: varchar({length: 255}).notNull().references(() => users.id, {onDelete: "cascade"}),
     ...timestamps
 
@@ -37,7 +45,9 @@ export const storesRelations = relations(stores, ({one, many}) => ({
         fields: [stores.ownerId],
         references: [users.id]
     }),
-    products: many(products)
+    products: many(products),
+    shippingRates : many(shippingRates)
+
 }))
 
 export type Store = typeof stores.$inferSelect;

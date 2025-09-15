@@ -1,0 +1,1 @@
+ALTER TABLE "countries" ADD COLUMN "dialCode" varchar(10) NOT NULL;

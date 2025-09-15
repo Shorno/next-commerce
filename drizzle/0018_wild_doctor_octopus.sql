@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX "shipping_rates_store_country" ON "shipping_rates" USING btree ("storeId","countryId");

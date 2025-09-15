@@ -22,6 +22,7 @@ import SettingsIcon from "@/components/icons/SettingsIcon";
 import {SellerNav} from "@/components/dashboard/seller/seller-nav";
 import {Store} from "@/db/schema";
 import {StoreSwitcher} from "@/components/dashboard/seller/store-switcher";
+import ShippingIcon from "@/components/icons/ShippingIcon";
 
 export interface SellerNavItem {
     title: string
@@ -60,6 +61,12 @@ const navMain: SellerNavItem[] = [
         url: "/dashboard/seller/coupons",
         postUrL: "coupons",
         icon: CouponIcon,
+    },
+    {
+        title: "Shipping",
+        url: "/dashboard/seller/shipping",
+        postUrL: "shipping",
+        icon: ShippingIcon,
     },
     {
         title: "Settings",
