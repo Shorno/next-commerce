@@ -10,7 +10,7 @@ export default async function StoreInfo() {
         where :  (store, {eq}) => eq(store.ownerId, user.id),
     })
     return (
-        <div className="p-4  rounded-lg shadow-md">
+        <div className="rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-4">Your Stores</h2>
             {stores.length === 0 ? (
                 <p className="text-gray-600">You have no stores. Create one to get started!</p>

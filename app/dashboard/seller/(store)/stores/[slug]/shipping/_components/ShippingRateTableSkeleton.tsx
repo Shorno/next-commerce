@@ -13,7 +13,7 @@ import {
 
 export default function ShippingRateTableSkeleton() {
     return (
-        <div className="container px-4 md:px-6 mx-auto">
+        <div className="container mx-auto">
             <div className="py-4">
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <div className="flex w-full flex-col gap-2">
