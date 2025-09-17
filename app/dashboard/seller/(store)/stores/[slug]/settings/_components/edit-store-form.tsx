@@ -91,7 +91,6 @@ export default function EditStoreForm({mode, store}: StoreFormProps) {
 
     return (
         <div className="min-h-screen">
-            {/* Header Section */}
             <div className="border-b border-border/50 bg-background">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="flex items-center justify-between">
@@ -102,17 +101,6 @@ export default function EditStoreForm({mode, store}: StoreFormProps) {
                             <p className="text-muted-foreground mt-2">
                                 {isEdit ? "Manage your store information and preferences" : "Set up your new store with all the necessary details"}
                             </p>
-                        </div>
-                        <div className="hidden sm:flex items-center gap-3">
-                            <Button
-                                type="button"
-                                variant="outline"
-                                className="h-10 px-6"
-                                disabled={isPending}
-                                onClick={() => window.history.back()}
-                            >
-                                Cancel
-                            </Button>
                         </div>
                     </div>
                 </div>
@@ -657,20 +645,11 @@ export default function EditStoreForm({mode, store}: StoreFormProps) {
                         </div>
 
                         <div
-                            className="sticky bottom-0 backdrop-blur-sm border-t border-border/50 p-4 -mx-4 sm:-mx-6 lg:-mx-8">
+                            className="sticky bottom-0 backdrop-blur-sm border-t border-border/50 ">
                             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                                 <div className="text-sm text-muted-foreground">
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        className="h-10 px-6"
-                                        disabled={isPending}
-                                        onClick={() => window.history.back()}
-                                    >
-                                        Cancel
-                                    </Button>
                                     <Button
                                         type="submit"
                                         className="h-10 px-8 min-w-[140px]"

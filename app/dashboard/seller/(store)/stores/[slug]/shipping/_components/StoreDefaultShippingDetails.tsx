@@ -15,7 +15,7 @@ export default async function StoreDefaultShippingDetails({slug}: ShippingDetail
 
     if (!shippingDetails) {
         return (
-            <div className="container mx-auto p-6">
+            <div className="container mx-auto">
                 <Card className="border-destructive/50">
                     <CardContent className="flex items-center justify-center py-12">
                         <div className="text-center space-y-2">
@@ -46,7 +46,7 @@ export default async function StoreDefaultShippingDetails({slug}: ShippingDetail
         )
     }
     return (
-        <div className="container mx-auto p-6 space-y-6">
+        <div className="container mx-auto space-y-6">
             {/* Header */}
             <div className="flex items-start justify-between">
                 <div className="space-y-2">

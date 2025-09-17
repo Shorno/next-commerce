@@ -1,5 +1,5 @@
 "use client"
-import {SidebarGroup, SidebarMenu, SidebarMenuItem, SidebarMenuButton} from "@/components/ui/sidebar"
+import {SidebarGroup, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar} from "@/components/ui/sidebar"
 import type React from "react"
 
 import Link from "next/link"
@@ -7,6 +7,7 @@ import {usePathname} from "next/navigation"
 import {SellerNavItem} from "@/components/dashboard/seller/seller-sidebar";
 
 export function SellerNav({items}: { items: SellerNavItem[] }) {
+    const {setOpenMobile} = useSidebar()
     const pathname = usePathname()
     const sellerRootURL = "/dashboard/seller/stores";
 
@@ -30,6 +31,7 @@ export function SellerNav({items}: { items: SellerNavItem[] }) {
                     return (
                         <SidebarMenuItem key={`${item.url}`}>
                             <SidebarMenuButton
+                                onClick={() => setOpenMobile(false)}
                                 asChild
                                 isActive={isActive}
                                 className="flex items-cente gap-3 px-3 h-12 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground"

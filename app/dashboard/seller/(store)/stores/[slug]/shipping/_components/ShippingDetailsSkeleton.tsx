@@ -4,7 +4,7 @@ import { Clock, DollarSign, Package, Plus, RotateCcw, Timer, Truck, Weight } fro
 
 export default function StoreShippingDetailsSkeleton() {
     return (
-        <div className="container mx-auto p-6 space-y-6">
+        <div className="container mx-auto  space-y-6">
             {/* Header Skeleton */}
             <div className="flex items-start justify-between">
                 <div className="space-y-2">
