@@ -14,7 +14,7 @@ const DEFAULT_COUNTRY: Country  = {
 const IpInfoURL = "https://api.ipinfo.io/lite/me"
 
 export async function getUserCountry(): Promise<Country> {
-    let userCountry = DEFAULT_COUNTRY;
+    const userCountry = DEFAULT_COUNTRY;
     try {
         const response = await fetch(`${IpInfoURL}?token=${process.env.NEXT_PUBLIC_IPINFO_API_KEY}`);
         if (response.ok) {

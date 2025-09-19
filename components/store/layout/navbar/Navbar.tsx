@@ -6,8 +6,6 @@ import {Country} from "@/actions/getUserCountry";
 const DEFAULT_COUNTRY: Country  = {
     country: "Bangladesh",
     country_code: "BD",
-    continent: "Asia",
-    continent_code: "AS"
 }
 
 export default async function Navbar() {
