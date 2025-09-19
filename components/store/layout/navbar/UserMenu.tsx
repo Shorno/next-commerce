@@ -3,13 +3,13 @@
 import type React from "react"
 
 import Link from "next/link"
-import {Button} from "@/components/ui/button"
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover"
-import {Separator} from "@/components/ui/separator"
-import {useClerk, useUser} from "@clerk/nextjs"
-import {HeartIcon, ListIcon, MessageCircle, User, LogOut} from "lucide-react"
-import {Avatar, AvatarImage, AvatarFallback} from "@/components/ui/avatar"
-import {cn} from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Separator } from "@/components/ui/separator"
+import { useClerk, useUser } from "@clerk/nextjs"
+import { HeartIcon, ListIcon, MessageCircle, User, LogOut } from "lucide-react"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { cn } from "@/lib/utils"
 
 interface UserLink {
     label: string
@@ -21,18 +21,18 @@ interface PublicLink extends UserLink {
 }
 
 const userLinks: UserLink[] = [
-    {label: "Settings", href: "/settings"},
-    {label: "Become a Seller", href: "/seller"},
-    {label: "Help Center", href: "/help"},
-    {label: "Return and Refund Policy", href: "/returns"},
-    {label: "Discount and Offers", href: "/offers"},
-    {label: "Report a Problem", href: "/report"},
+    { label: "Settings", href: "/settings" },
+    { label: "Become a Seller", href: "/seller" },
+    { label: "Help Center", href: "/help" },
+    { label: "Return and Refund Policy", href: "/returns" },
+    { label: "Discount and Offers", href: "/offers" },
+    { label: "Report a Problem", href: "/report" },
 ]
 
 const publicLinks: PublicLink[] = [
-    {label: "My Orders", href: "/orders", icon: <ListIcon className="h-4 w-4"/>},
-    {label: "Messages", href: "/messages", icon: <MessageCircle className="h-4 w-4"/>},
-    {label: "Wishlist", href: "/wishlist", icon: <HeartIcon className="h-4 w-4"/>},
+    { label: "My Orders", href: "/orders", icon: <ListIcon className="h-4 w-4" /> },
+    { label: "Messages", href: "/messages", icon: <MessageCircle className="h-4 w-4" /> },
+    { label: "Wishlist", href: "/wishlist", icon: <HeartIcon className="h-4 w-4" /> },
 ]
 
 interface UserMenuProps {
@@ -43,19 +43,18 @@ interface UserMenuProps {
     onMouseLeave?: () => void
 }
 
-export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onMouseLeave}: UserMenuProps) {
-    const {isSignedIn, user} = useUser()
-    const {signOut} = useClerk();
+export default function UserMenu({ trigger, open, onOpenChange, onMouseEnter, onMouseLeave }: UserMenuProps) {
+    const { isSignedIn, user } = useUser()
+    const { signOut } = useClerk()
 
     const handleClosePopover = () => {
         onOpenChange?.(false)
     }
 
     const handleSignOut = async () => {
-        handleClosePopover();
-        await signOut();
+        handleClosePopover()
+        await signOut()
     }
-
 
     return (
         <Popover open={open} onOpenChange={onOpenChange}>
@@ -78,7 +77,7 @@ export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onM
                                         alt={`${user?.firstName || "User"}'s profile picture`}
                                     />
                                     <AvatarFallback className="bg-primary/10 text-primary">
-                                        <User className="h-6 w-6"/>
+                                        <User className="h-6 w-6" />
                                     </AvatarFallback>
                                 </Avatar>
                                 {user?.firstName && (
@@ -96,7 +95,7 @@ export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onM
                                 size="sm"
                                 className="w-full hover:bg-destructive hover:text-destructive-foreground transition-colors bg-transparent"
                             >
-                                <LogOut className="h-4 w-4 mr-2"/>
+                                <LogOut className="h-4 w-4 mr-2" />
                                 Sign Out
                             </Button>
                         </div>
@@ -116,7 +115,7 @@ export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onM
                     )}
                 </div>
 
-                <Separator className="my-4"/>
+                <Separator className="my-4" />
 
                 <div className="space-y-3">
                     <h3 className="text-sm font-medium text-muted-foreground">Quick Actions</h3>
@@ -134,8 +133,7 @@ export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onM
                                 )}
                                 aria-label={link.label}
                             >
-                                <div
-                                    className="flex items-center justify-center h-10 w-10 rounded-full bg-primary/10 text-primary">
+                                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary/10 text-primary">
                                     {link.icon}
                                 </div>
                                 <span className="text-xs font-medium text-center leading-tight">{link.label}</span>
@@ -144,8 +142,7 @@ export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onM
                     </div>
                 </div>
 
-
-                <Separator className="my-4"/>
+                <Separator className="my-4" />
                 <div className="space-y-3">
                     <h3 className="text-sm font-medium text-muted-foreground">Account & Support</h3>
                     <nav>
@@ -169,7 +166,6 @@ export default function UserMenu({trigger, open, onOpenChange, onMouseEnter, onM
                         </ul>
                     </nav>
                 </div>
-
             </PopoverContent>
         </Popover>
     )

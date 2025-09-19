@@ -3,16 +3,12 @@
 export interface Country  {
     country_code: string,
     country: string,
-    continent_code: string,
-    continent: string
 }
 
 
 const DEFAULT_COUNTRY: Country  = {
     country: "Bangladesh",
     country_code: "BD",
-    continent: "Asia",
-    continent_code: "AS"
 }
 
 const IpInfoURL = "https://api.ipinfo.io/lite/me"
@@ -26,8 +22,6 @@ export async function getUserCountry(): Promise<Country> {
             return {
                 country: data.country,
                 country_code: data.country_code,
-                continent: data.continent,
-                continent_code: data.continent_code
             }
         }
         return userCountry;
