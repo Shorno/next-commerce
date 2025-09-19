@@ -1,5 +1,5 @@
 "use client"
-import { ArrowDown, MapPin, ShoppingCartIcon, User, UserIcon } from "lucide-react"
+import { ArrowDown, ShoppingCartIcon, User, UserIcon } from "lucide-react"
 import {useState, useRef, useCallback} from "react"
 import { useUser } from "@clerk/nextjs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -74,7 +74,7 @@ export default function NavbarClient({ country }: NavbarClientProps) {
         <>
             {isFocused && <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setIsFocused(false)} />}
 
-            <nav className="relative z-50 py-1 bg-gradient-to-r from-slate-500 to-slate-600 dark:from-slate-800 dark:via-gray-900 dark:to-slate-800">
+            <nav className="relative z-50  bg-gradient-to-r from-slate-500 to-slate-600 dark:from-slate-800  dark:to-slate-800">
                 <div className="w-full">
                     {/* Main navbar row */}
                     <div className="flex items-center justify-between w-full gap-4 px-4 h-16">
@@ -82,15 +82,6 @@ export default function NavbarClient({ country }: NavbarClientProps) {
                         <div className="flex items-center gap-4 md:gap-8 flex-shrink-0">
                             <div className="flex flex-col justify-center items-center whitespace-nowrap">
                                 <span className="text-white font-semibold text-lg">Next Commerce</span>
-                            </div>
-
-                            {/* Location - hidden on mobile to save space */}
-                            <div className="hidden lg:flex items-end">
-                                <MapPin className="text-gray-200 dark:text-gray-300 size-4 mb-1" />
-                                <div>
-                                    <p className="text-gray-200 dark:text-gray-300 text-sm">Deliver to</p>
-                                    <h1 className="text-white text-sm font-bold">Bangladesh</h1>
-                                </div>
                             </div>
                         </div>
 
@@ -168,13 +159,13 @@ export default function NavbarClient({ country }: NavbarClientProps) {
                                             onMouseLeave={enhancedUserMenuHandlers.onMouseLeave}
                                             onClick={enhancedUserMenuHandlers.onClick}
                                         >
-                                            <Avatar className="h-8 w-8 ring-2 ring-white/30">
+                                            <Avatar className="h-7 w-7 ring-2 ring-white/30">
                                                 <AvatarImage
                                                     src={user?.imageUrl || "/placeholder.svg"}
                                                     alt={`${user?.firstName || "User"}'s profile picture`}
                                                 />
                                                 <AvatarFallback className="bg-white/20 text-white">
-                                                    <User className="h-6 w-6" />
+                                                    <User className="h-5 w-5" />
                                                 </AvatarFallback>
                                             </Avatar>
                                         </div>

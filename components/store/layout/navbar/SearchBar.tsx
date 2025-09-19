@@ -19,7 +19,7 @@ export default function SearchBar({
     const { searchQuery, isSearching, handleSearch, handleKeyPress, handleInputChange } = useSearch()
 
     const isDesktop = variant === 'desktop'
-    const height = isDesktop ? 'h-12' : 'h-10'
+    const height = isDesktop ? 'h-11' : 'h-10'
     const borderRadius = isDesktop ? 'rounded-xl' : 'rounded-lg'
     const textSize = isDesktop ? 'text-base' : 'text-sm'
 
