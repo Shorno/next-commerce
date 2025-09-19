@@ -3,7 +3,7 @@
 import { db } from "@/db";
 import {subcategories } from "@/db/schema";
 import { revalidatePath } from "next/cache";
-import { eq } from "drizzle-orm";
+import {eq, sql} from "drizzle-orm";
 import { SubcategoryFormData } from "@/zodSchema/category";
 
 interface Response {
@@ -80,6 +80,20 @@ export async function getAllSubcategories() {
         return [];
     }
 }
+
+export async function getRandomSubCategories() {
+    try {
+        return await db.query.subcategories.findMany({
+            with: { category: true },
+            orderBy: () => sql`RANDOM()`,
+            limit : 5,
+        });
+    } catch (error) {
+        console.error("Error fetching subcategories:", error);
+        return [];
+    }
+}
+
 
 export async function getSubcategoriesByCategory(categoryId: number) {
     try {
