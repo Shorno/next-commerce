@@ -61,8 +61,8 @@ export async function createCategory(data: CategoryFormData): Promise<Response> 
 
 
 export async function getAllCategories() {
+    "use cache"
     try {
-
         return await db.query.categories.findMany({
             orderBy: (categories, {asc}) => [asc(categories.name)]
         })

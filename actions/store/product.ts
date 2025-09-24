@@ -4,6 +4,7 @@ import {ProductWithVariants} from "@/db/schema";
 
 
 export async function getAllProducts() : Promise<ProductWithVariants[]> {
+    "use cache"
     try {
         return await db.query.products.findMany({
             with: {
