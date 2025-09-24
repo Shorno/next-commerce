@@ -158,6 +158,17 @@ export const colorsRelations = relations(colors, ({one}) => ({
     })
 }))
 
+export type VariantWithRelations = Variant & {
+    images: ProductVariantImage[];
+    sizes: Size[];
+    colors: Color[];
+    specs: Spec[]
+};
+
+export type ProductWithVariants = Product & {
+    variants: VariantWithRelations[];
+};
+
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
 export type Variant = typeof variants.$inferSelect;
@@ -168,3 +179,5 @@ export type ProductVariantImage = typeof productVariantImages.$inferSelect;
 export type NewProductVariantImage = typeof productVariantImages.$inferInsert;
 export type Color = typeof colors.$inferSelect;
 export type NewColor = typeof colors.$inferInsert;
+export type Spec = typeof specs.$inferSelect;
+export type NewSpec = typeof specs.$inferInsert;

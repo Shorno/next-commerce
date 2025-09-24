@@ -6,6 +6,7 @@ import getActiveStores from "@/actions/store/getActiveStores";
 export default async function DashboardPage() {
     const user = await currentUser();
     const role = user?.privateMetadata?.role as UserRole;
+    console.log(user)
     //
     // const redirectMap: Record<string, string> = {
     //     ADMIN: "/dashboard/admin",

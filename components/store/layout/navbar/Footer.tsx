@@ -1,9 +1,9 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {FacebookIcon, GithubIcon, LinkedinIcon, PhoneIcon} from "lucide-react";
 import {Separator} from "@/components/ui/separator";
 import Newsletter from "@/components/store/layout/navbar/Newsletter";
-import {getRandomSubCategories} from "@/actions/admin/subcategories";
 import Link from "next/link";
+import RandomSubcategory, {RandomSubcategorySkeleton} from "@/components/store/layout/navbar/RandomSubcategory";
 
 const sections = [
     {
@@ -24,14 +24,14 @@ const socialLinks = [
     {icon: <LinkedinIcon className="size-5"/>, href: "#", label: "LinkedIn"},
 ];
 
-export default async function Footer() {
-    const subcategories = await getRandomSubCategories();
+export default function Footer() {
 
     return (
-        <section>
+        <section className={"mt-24"}>
             <Newsletter/>
             <div className={"px-4"}>
-                <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left container mx-auto my-8">
+                <div
+                    className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left container mx-auto my-8">
                     <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
                         {/* Logo */}
                         <div className="flex items-center gap-2 lg:justify-start">
@@ -56,20 +56,9 @@ export default async function Footer() {
                     </div>
 
                     <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-20">
-                        {/* Dynamic subcategories section */}
-                        <div>
-                            <h3 className="font-bold mb-2">Find Your Products</h3>
-                            <ul className="text-muted-foreground space-y-3 text-sm">
-                                {subcategories.map((subcategory) => (
-                                    <li
-                                        key={subcategory.id}
-                                        className="hover:text-primary font-medium"
-                                    >
-                                        <Link href={subcategory.slug}>{subcategory.name}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        <Suspense fallback={<RandomSubcategorySkeleton/>}>
+                            <RandomSubcategory/>
+                        </Suspense>
 
                         {/* Static sections */}
                         {sections.map((section, sectionIdx) => (
