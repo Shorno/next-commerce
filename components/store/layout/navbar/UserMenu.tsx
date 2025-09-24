@@ -8,7 +8,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Separator } from "@/components/ui/separator"
 import { useClerk, useUser } from "@clerk/nextjs"
 import { HeartIcon, ListIcon, MessageCircle, User, LogOut } from "lucide-react"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 
 interface UserLink {
@@ -16,7 +15,7 @@ interface UserLink {
     href: string
 }
 
-interface PublicLink extends UserLink {
+interface QuickLinks extends UserLink {
     icon: React.ReactNode
 }
 
@@ -29,7 +28,7 @@ const userLinks: UserLink[] = [
     { label: "Report a Problem", href: "/report" },
 ]
 
-const publicLinks: PublicLink[] = [
+const quickLinks: QuickLinks[] = [
     { label: "My Orders", href: "/orders", icon: <ListIcon className="h-4 w-4" /> },
     { label: "Messages", href: "/messages", icon: <MessageCircle className="h-4 w-4" /> },
     { label: "Wishlist", href: "/wishlist", icon: <HeartIcon className="h-4 w-4" /> },
@@ -45,6 +44,7 @@ interface UserMenuProps {
 
 export default function UserMenu({ trigger, open, onOpenChange, onMouseEnter, onMouseLeave }: UserMenuProps) {
     const { isSignedIn, user } = useUser()
+
     const { signOut } = useClerk()
 
     const handleClosePopover = () => {
@@ -71,15 +71,6 @@ export default function UserMenu({ trigger, open, onOpenChange, onMouseEnter, on
                     {isSignedIn ? (
                         <div className="flex flex-col items-center space-y-4">
                             <div className="flex flex-col items-center space-y-2">
-                                <Avatar className="h-16 w-16">
-                                    <AvatarImage
-                                        src={user?.imageUrl || "/placeholder.svg"}
-                                        alt={`${user?.firstName || "User"}'s profile picture`}
-                                    />
-                                    <AvatarFallback className="bg-primary/10 text-primary">
-                                        <User className="h-6 w-6" />
-                                    </AvatarFallback>
-                                </Avatar>
                                 {user?.firstName && (
                                     <div className="text-center">
                                         <p className="font-medium text-sm">
@@ -120,7 +111,7 @@ export default function UserMenu({ trigger, open, onOpenChange, onMouseEnter, on
                 <div className="space-y-3">
                     <h3 className="text-sm font-medium text-muted-foreground">Quick Actions</h3>
                     <div className="grid grid-cols-3 gap-4">
-                        {publicLinks.map((link) => (
+                        {quickLinks.map((link) => (
                             <Link
                                 key={link.label}
                                 href={link.href}
